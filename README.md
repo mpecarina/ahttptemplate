@@ -1,3 +1,3 @@
-# aio-template
+# aiohttp-template
 
-asyncio template for http and grpc apis
+asyncio template for rest apis
