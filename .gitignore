@@ -1,0 +1,16 @@
+.vscode
+.idea
+.DS_Store
+
+.Python
+__pycache__
+bin
+include
+lib
+lib64
+tcl
+
+*.pyc
+pyvenv.cfg
+pip-selfcheck.json
+.mypy_cache
