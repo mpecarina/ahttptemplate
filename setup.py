@@ -21,9 +21,9 @@ setup(
     # tests_require=required_for_tests,
     version=version_from_file,
     description="AioHTTP Template Package"
-                "RESTful API Boilerplate",
+                "REST API Boilerplate",
     include_package_data = True,
-    keywords="asyncio rest api template",
+    keywords="aiohttp rest api template",
     classifiers=[
         "Development Status :: 5 - Draft",
         "Programming Language :: Python :: 3.8",

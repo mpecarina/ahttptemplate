@@ -46,6 +46,13 @@ class CustomJsonFormatter(jsonlogger.JsonFormatter):
         else:
             log_record["level"] = record.levelname
 
+logger = logging.getLogger()
+logger.setLevel(getenv("LOG_LEVEL") or logging.DEBUG)
+logHandler = logging.StreamHandler()
+formatter = CustomJsonFormatter()
+logHandler.setFormatter(formatter)
+logger.addHandler(logHandler)
+
 def verify_url_token(f):
     @wraps(f)
     def handler(*args, **kwargs):
@@ -73,14 +80,6 @@ def basic_auth(f):
 
 def init_app(**kwargs: Any) -> web.Application:
     try:
-        global logger
-        logger = logging.getLogger()
-        logger.setLevel(getenv("LOG_LEVEL") or logging.DEBUG)
-        logHandler = logging.StreamHandler()
-        formatter = CustomJsonFormatter()
-        logHandler.setFormatter(formatter)
-        logger.addHandler(logHandler)
-
         middleware = kwargs.get("middleware") or []
         asyncio.set_event_loop_policy(uvloop.EventLoopPolicy())
         return web.Application(middlewares=middleware)
@@ -119,16 +118,18 @@ def listen_on_port(app: web.Application, port: int) -> None:
 async def ping(request: web.Request) -> web.Response:
     ping_resp = {"code": "SUCCESS", "info": "PONG"}
     if api_type.upper() == "JSON":
-        return web.json_response(ping_resp, status=200)
+        resp = web.json_response(ping_resp, status=200)
     elif api_type.upper() == "XML":
-        return xml_response(ping_resp, status=200)
+        resp = xml_response(ping_resp, status=200)
+    return resp
 
 async def error_handler(request: web.Request) -> web.Response:
     err_resp = {"CODE": "ERROR", "info": "404 not found"}
     if api_type.upper() == "JSON":
-        return web.json_response(err_resp, status=404)
+        resp = web.json_response(err_resp, status=404)
     elif api_type.upper() == "XML":
-        return xml_response(err_resp, status=404)
+        resp = xml_response(err_resp, status=404)
+    return resp
 
 def xml_response(input_dict: dict, status: int=200) -> web.Response:
     response = web.Response(status=status)
