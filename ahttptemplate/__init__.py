@@ -47,7 +47,7 @@ class CustomJsonFormatter(jsonlogger.JsonFormatter):
             log_record["level"] = record.levelname
 
 logger = logging.getLogger()
-logger.setLevel(getenv("LOG_LEVEL") or logging.DEBUG)
+logger.setLevel(getenv("LOG_LEVEL") or 10)
 logHandler = logging.StreamHandler()
 formatter = CustomJsonFormatter()
 logHandler.setFormatter(formatter)
@@ -93,7 +93,7 @@ def add_routes(app: web.Application, handlers: dict) -> None:
             controllers = handlers[controller_name]
             for controller in controllers:
                 handler_name = next(iter(controller.keys()))
-                pkg = import_module(f".controllers.{controller_name}", __name__)
+                pkg = import_module(f"controllers.{controller_name}")
                 imported_handler = eval(f"pkg.{handler_name}")
                 path_no_slash = str(controller[handler_name]['paths'][0])
                 path_trailing_slash = f"{controller[handler_name]['paths'][0]}/"

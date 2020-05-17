@@ -17,15 +17,15 @@ setup(
     license="Apache 2.0",
     author_email="mattp@hbci.com",
     packages=find_packages(),
+    package_data={"ahttptemplate": ["./version.txt", "./requirements.txt", "./test_requirements.txt"]},
+    include_package_data=True,
     install_requires=required,
     # tests_require=required_for_tests,
     version=version_from_file,
     description="AioHTTP Template Package"
                 "REST API Boilerplate",
-    include_package_data = True,
     keywords="aiohttp rest api template",
     classifiers=[
-        "Development Status :: 5 - Draft",
         "Programming Language :: Python :: 3.8",
         "Topic :: Software Development :: Libraries",
         "License :: OSI Approved :: Apache Software License",

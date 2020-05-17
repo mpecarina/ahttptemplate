@@ -1,4 +1,5 @@
 aiohttp==3.6.2
+aioprometheus==19.11.0
 appdirs==1.4.3
 astroid==2.3.3
 async-timeout==3.0.1
@@ -16,9 +17,14 @@ lazy-object-proxy==1.4.3
 mccabe==0.6.1
 more-itertools==8.2.0
 multidict==4.7.5
+mypy==0.770
+mypy-extensions==0.4.3
 packaging==20.3
 pkginfo==1.5.0.1
 pluggy==0.13.1
+prometheus-client==0.7.1
+prometheus-metrics-proto==18.1.2
+protobuf==3.12.0
 py==1.8.1
 Pygments==2.6.1
 pylint==2.4.4
@@ -27,6 +33,7 @@ pytest==5.3.5
 pytest-aiohttp==0.3.0
 python-json-logger==0.1.11
 PyYAML==5.3
+quantile-python==1.1
 readme-renderer==24.0
 requests==2.23.0
 requests-toolbelt==0.9.1
@@ -35,6 +42,8 @@ toml==0.10.0
 tox==3.14.5
 tqdm==4.43.0
 twine==3.1.1
+typed-ast==1.4.1
+typing-extensions==3.7.4.1
 urllib3==1.25.8
 uvloop==0.14.0
 virtualenv==20.0.10
