@@ -25,6 +25,7 @@ pluggy==0.13.1
 prometheus-client==0.7.1
 prometheus-metrics-proto==18.1.2
 protobuf==3.12.0
+psutil==5.7.0
 py==1.8.1
 Pygments==2.6.1
 pylint==2.4.4
