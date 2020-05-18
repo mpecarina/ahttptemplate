@@ -66,7 +66,7 @@ ping_counter = Counter(
 )
 latency_metric = Histogram(
     "request_latency_seconds",
-    "Request latency in seconds",
+    "request latency in seconds.",
     const_labels=prometheus_labels,
     buckets=[0.1, 0.5, 1.0, 5.0],
 )
