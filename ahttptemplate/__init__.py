@@ -162,9 +162,9 @@ async def ping(request: web.Request) -> web.Response:
 @timer(metrics_request_time)
 async def metrics(request: web.Request) -> web.Response:
     ram_metric.set({"type": "virtual"}, virtual_memory().used)
-    # ram_metric.set({"type": "swap"}, swap_memory().used)
+    ram_metric.set({"type": "swap"}, swap_memory().used)
 
-    for c, p in enumerate(cpu_percent(interval=1, percpu=True)):
+    for c, p in enumerate(cpu_percent(interval=0, percpu=True)):
         cpu_metric.set({"core": c}, p)
 
     return await prometheus_service.handle_metrics(request)
@@ -181,3 +181,4 @@ def xml_response(input_dict: dict, status: int=200) -> web.Response:
     response = web.Response(status=status)
     response.body = unparse({"response": input_dict})
     return response
+
