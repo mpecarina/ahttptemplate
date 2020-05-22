@@ -161,11 +161,18 @@ async def ping(request: web.Request) -> web.Response:
 
 @timer(metrics_request_time)
 async def metrics(request: web.Request) -> web.Response:
-    ram_metric.set({"type": "virtual"}, virtual_memory().used)
-    ram_metric.set({"type": "swap"}, swap_memory().used)
+    # ram_metric.set({"type": "virtual"}, virtual_memory().used)
+    # ram_metric.set({"type": "swap"}, swap_memory().used)
 
-    for c, p in enumerate(cpu_percent(interval=0, percpu=False)):
-        cpu_metric.set({"core": c}, p)
+    # for c, p in enumerate(cpu_percent(interval=0, percpu=True)):
+    #     cpu_metric.set({"cpu": c}, p)
+    ram = virtual_memory()
+    swap = swap_memory()
+
+    ram_metric.set({"type": "virtual", }, ram.used)
+    ram_metric.set({"type": "virtual", "status": "cached"}, ram.cached)
+    ram_metric.set({"type": "swap"}, swap.used)
+    cpu_metric.set({"type": "cpu"}, cpu_percent(interval=0, percpu=False))
 
     return await prometheus_service.handle_metrics(request)
 
