@@ -22,7 +22,7 @@ password = ""
 
 try:
     local_dir = path.abspath(path.dirname(__file__))
-    read_auth = open(path.join(local_dir, "../../auth.yml"), "r")
+    read_auth = open(path.join(local_dir, "../../auth.yaml"), "r")
     auth = load(read_auth, Loader=SafeLoader)
     url_token = auth["token"]
     username = auth["username"]
@@ -164,7 +164,7 @@ async def metrics(request: web.Request) -> web.Response:
     ram_metric.set({"type": "virtual"}, virtual_memory().used)
     ram_metric.set({"type": "swap"}, swap_memory().used)
 
-    for c, p in enumerate(cpu_percent(interval=0, percpu=True)):
+    for c, p in enumerate(cpu_percent(interval=0, percpu=False)):
         cpu_metric.set({"core": c}, p)
 
     return await prometheus_service.handle_metrics(request)
@@ -181,4 +181,3 @@ def xml_response(input_dict: dict, status: int=200) -> web.Response:
     response = web.Response(status=status)
     response.body = unparse({"response": input_dict})
     return response
-
