@@ -21,7 +21,7 @@ setup(
     include_package_data=True,
     install_requires=required,
     # tests_require=required_for_tests,
-    version="0.0.9",
+    version="0.0.10",
     description="AioHTTP Template Package"
                 "REST API Boilerplate",
     keywords="aiohttp rest api template",
