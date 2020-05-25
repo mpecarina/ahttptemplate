@@ -1,8 +1,8 @@
 from setuptools import setup, find_packages
 import os
 
-with open(os.path.join("./version.txt")) as version_file:
-    version_from_file = version_file.read().strip()
+# with open(os.path.join("./version.txt")) as version_file:
+#     version_from_file = version_file.read().strip()
 
 with open("./requirements.txt") as f_required:
     required = f_required.read().splitlines()
@@ -21,7 +21,7 @@ setup(
     include_package_data=True,
     install_requires=required,
     # tests_require=required_for_tests,
-    version=version_from_file,
+    version="0.0.9",
     description="AioHTTP Template Package"
                 "REST API Boilerplate",
     keywords="aiohttp rest api template",
